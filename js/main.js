@@ -262,7 +262,7 @@ var Gallery = {
         texture.repeat.set(24, 24);
 
         Gallery.floorMaterial = new THREE.MeshPhongMaterial({ map: texture });
-        Gallery.floor = new THREE.Mesh(new THREE.PlaneGeometry(45, 45), Gallery.floorMaterial);
+        Gallery.floor = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), Gallery.floorMaterial);
 
         Gallery.floor.rotation.x = Math.PI / 2;
         Gallery.floor.rotation.y = Math.PI;
@@ -281,20 +281,21 @@ var Gallery = {
 
         Gallery.wallMaterial = new THREE.MeshLambertMaterial({ map: texture });
 
-        Gallery.wall1 = new THREE.Mesh(new THREE.BoxGeometry(40, 6, 0.001), Gallery.wallMaterial);
-        Gallery.wall2 = new THREE.Mesh(new THREE.BoxGeometry(6, 6, 0.001), Gallery.wallMaterial);
-        Gallery.wall3 = new THREE.Mesh(new THREE.BoxGeometry(6, 6, 0.001), Gallery.wallMaterial);
-        Gallery.wall4 = new THREE.Mesh(new THREE.BoxGeometry(40, 6, 0.001), Gallery.wallMaterial);
+        Gallery.wall1 = new THREE.Mesh(new THREE.BoxGeometry(40, 10, 0.001), Gallery.wallMaterial);
+        Gallery.wall2 = new THREE.Mesh(new THREE.BoxGeometry(40, 10, 0.001), Gallery.wallMaterial);
+        Gallery.wall3 = new THREE.Mesh(new THREE.BoxGeometry(40, 10, 0.001), Gallery.wallMaterial);
+        Gallery.wall4 = new THREE.Mesh(new THREE.BoxGeometry(40, 10, 0.001), Gallery.wallMaterial);
 
         Gallery.wallGroup.add(Gallery.wall1, Gallery.wall2, Gallery.wall3, Gallery.wall4);
-        Gallery.wallGroup.position.y = 10;
+        Gallery.wallGroup.position.y = 5;
+        Gallery.wallGroup.position.x = 0;
 
-        Gallery.wall1.position.z = -10;
+        Gallery.wall1.position.z = -20;
         Gallery.wall2.position.x = -20;
         Gallery.wall2.rotation.y = Math.PI / 2;
         Gallery.wall3.position.x = 20;
         Gallery.wall3.rotation.y = -Math.PI / 2;
-        Gallery.wall4.position.z = 10;
+        Gallery.wall4.position.z = 20;
         Gallery.wall4.rotation.y = Math.PI;
 
         for (var i = 0; i < Gallery.wallGroup.children.length; i++) {
@@ -314,7 +315,7 @@ var Gallery = {
 
           Gallery.ceilMaterial = new THREE.MeshLambertMaterial({ map: texture });
 
-          Gallery.ceil = new THREE.Mesh(new THREE.PlaneGeometry(100, 6), Gallery.ceilMaterial); // LUAS ATAP
+          Gallery.ceil = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), Gallery.ceilMaterial); // LUAS ATAP
           Gallery.ceil.position.y = 10;
           Gallery.ceil.rotation.x = Math.PI / 2;
 
@@ -363,8 +364,8 @@ var Gallery = {
 	          	test: true,
 	          	audioSource: './converted/' + index.toString() + '.mp3'
 	          }; // data relative to: music & information
-	          Gallery.scene.add(plane);
-	          Gallery.paintings.push(plane);
+	          // Gallery.scene.add(plane);
+	          // Gallery.paintings.push(plane);
 	      }
 	      // img.map.needsUpdate = true; //ADDED
 	    }(i))
@@ -413,11 +414,11 @@ var Gallery = {
          Gallery.controls.getObject().position.y = 1.75;
       }
 
-      if (Gallery.controls.getObject().position.z < -2) {
-        Gallery.controls.getObject().position.z = -2;
+      if (Gallery.controls.getObject().position.z < -18) {
+        Gallery.controls.getObject().position.z = -18;
       }
-      if (Gallery.controls.getObject().position.z > 2) {
-        Gallery.controls.getObject().position.z = 2;
+      if (Gallery.controls.getObject().position.z > 18) {
+        Gallery.controls.getObject().position.z = 18;
       }
       if (Gallery.controls.getObject().position.x < -18) {
         Gallery.controls.getObject().position.x = -18;

@@ -25,4 +25,3 @@ The Art Gallery idea came up since some images are paintings.
 I used a premade box from a girl then I customized everything with some colors, pattern and audio.
 
 If someone find her repo, please, contact me so I can give her the reference.
-
