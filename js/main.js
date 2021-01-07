@@ -269,6 +269,42 @@ var Gallery = {
         Gallery.scene.add(Gallery.floor);
     }, undefined, function (err) { console.error(err) });
 
+    Gallery.stageGroup = new THREE.Group();
+    Gallery.scene.add(Gallery.stageGroup);
+    Gallery.textureLoader.load('./asset/stage.jpg',
+      function (texture) {
+        Gallery.stageMaterial = new THREE.MeshLambertMaterial({map: texture});
+
+        Gallery.stage = new THREE.Mesh(new THREE.BoxGeometry(20, 2, 8), Gallery.stageMaterial);
+        Gallery.ladderLeft1 = new THREE.Mesh(new THREE.BoxGeometry(1, 1.25, 3), Gallery.stageMaterial);
+        Gallery.ladderLeft2 = new THREE.Mesh(new THREE.BoxGeometry(1, 0.5, 3), Gallery.stageMaterial);
+        Gallery.ladderRight1 = new THREE.Mesh(new THREE.BoxGeometry(1, 1.25, 3), Gallery.stageMaterial);
+        Gallery.ladderRight2 = new THREE.Mesh(new THREE.BoxGeometry(1, 0.5, 3), Gallery.stageMaterial);
+
+        Gallery.stageGroup.add(Gallery.stage, Gallery.ladderLeft1, Gallery.ladderLeft2, Gallery.ladderRight1, Gallery.ladderRight2);
+
+        Gallery.stage.position.x =   0;
+        Gallery.stage.position.y =   1;
+        Gallery.stage.position.z = -16;
+        
+        Gallery.ladderLeft1.position.x =  -10.5;
+        Gallery.ladderLeft1.position.y =   0.62;
+        Gallery.ladderLeft1.position.z =    -15;
+        
+        Gallery.ladderLeft2.position.x = -11.51;
+        Gallery.ladderLeft2.position.y =    0.3;
+        Gallery.ladderLeft2.position.z =    -15;
+
+        Gallery.ladderRight1.position.x =  10.5;
+        Gallery.ladderRight1.position.y =  0.62;
+        Gallery.ladderRight1.position.z =   -15;
+        
+        Gallery.ladderRight2.position.x =  11.5;
+        Gallery.ladderRight2.position.y =  0.3;
+        Gallery.ladderRight2.position.z =   -15;
+
+      }, undefined, function (err) {console.error(err)});
+
     //Create the walls////
     Gallery.wallGroup = new THREE.Group();
     Gallery.scene.add(Gallery.wallGroup);
@@ -325,51 +361,51 @@ var Gallery = {
       function (err) { console.error(err); }
 	  );
 
-	  Gallery.artGroup = new THREE.Group();
+	  // Gallery.artGroup = new THREE.Group();
 
-	  Gallery.num_of_paintings = 30;
-	  Gallery.paintings = [];
-	  for (var i = 0; i < Gallery.num_of_paintings; i++) {
-	    (function (index) {
-	      var artwork = new Image();
-	      var ratiow = 0;
-	      var ratioh = 0;
+	  // Gallery.num_of_paintings = 30;
+	  // Gallery.paintings = [];
+	  // for (var i = 0; i < Gallery.num_of_paintings; i++) {
+	  //   (function (index) {
+	  //     var artwork = new Image();
+	  //     var ratiow = 0;
+	  //     var ratioh = 0;
 
-	      var source = './images/' + (index).toString() + '.jpg';
-	      artwork.src = source;
-	      // artwork.height = 350;
-	      // artwork.width = 450;
+	  //     var source = './images/' + (index).toString() + '.jpg';
+	  //     artwork.src = source;
+	  //     // artwork.height = 350;
+	  //     // artwork.width = 450;
 
-	      //var texture = THREE.ImageUtils.loadTexture(artwork.src);
-	      var texture = Gallery.textureLoader.load(artwork.src);
-	      texture.minFilter = THREE.LinearFilter;
-	      var img = new THREE.MeshBasicMaterial({ map: texture });
+	  //     //var texture = THREE.ImageUtils.loadTexture(artwork.src);
+	  //     var texture = Gallery.textureLoader.load(artwork.src);
+	  //     texture.minFilter = THREE.LinearFilter;
+	  //     var img = new THREE.MeshBasicMaterial({ map: texture });
 
-        // Images Placement
-	      artwork.onload = function () {
-	          ratiow = artwork.width / 300;
-	          ratioh = artwork.height / 300;
-	          // plane for artwork
-	          var plane = new THREE.Mesh(new THREE.PlaneGeometry(ratiow, ratioh), img); //width, height
-	          plane.overdraw = true;
-	          if (index <= Math.floor(Gallery.num_of_paintings / 2) - 1) //bottom half
-	          {
-              plane.position.set(10 * index - 17.5, 2, -2.96); //y and z kept constant
-	          }else {
-              plane.position.set(10 * index - 55, 2, 2.96);
-              plane.rotation.y = Math.PI;
-	          }
+    //     // Images Placement
+	  //     artwork.onload = function () {
+	  //         ratiow = artwork.width / 300;
+	  //         ratioh = artwork.height / 300;
+	  //         // plane for artwork
+	  //         var plane = new THREE.Mesh(new THREE.PlaneGeometry(ratiow, ratioh), img); //width, height
+	  //         plane.overdraw = true;
+	  //         if (index <= Math.floor(Gallery.num_of_paintings / 2) - 1) //bottom half
+	  //         {
+    //           plane.position.set(10 * index - 17.5, 2, -2.96); //y and z kept constant
+	  //         }else {
+    //           plane.position.set(10 * index - 55, 2, 2.96);
+    //           plane.rotation.y = Math.PI;
+	  //         }
 
-	          plane.userData = {
-	          	test: true,
-	          	audioSource: './converted/' + index.toString() + '.mp3'
-	          }; // data relative to: music & information
-	          // Gallery.scene.add(plane);
-	          // Gallery.paintings.push(plane);
-	      }
-	      // img.map.needsUpdate = true; //ADDED
-	    }(i))
-	  }
+	  //         plane.userData = {
+	  //         	test: true,
+	  //         	audioSource: './converted/' + index.toString() + '.mp3'
+	  //         }; // data relative to: music & information
+	  //         // Gallery.scene.add(plane);
+	  //         // Gallery.paintings.push(plane);
+	  //     }
+	  //     // img.map.needsUpdate = true; //ADDED
+	  //   }(i))
+	  // }
   },
   render: function () {
     requestAnimationFrame(Gallery.render);
