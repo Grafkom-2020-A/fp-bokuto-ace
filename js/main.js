@@ -407,6 +407,22 @@ var Gallery = {
 	  //   }(i))
 	  // }
   },
+
+  collada: function(){
+    var loader = new THREE.ColladaLoader();
+				loader.load( './asset/model.dae', function ( collada ) {
+
+					var animations = collada.animations;
+					var avatar = collada.scene;
+
+					mixer = new THREE.AnimationMixer( avatar );
+					var action = mixer.clipAction( animations[ 0 ] ).play();
+
+					scene.add( avatar );
+
+				} );
+  },
+  
   render: function () {
     requestAnimationFrame(Gallery.render);
 
@@ -512,6 +528,7 @@ Gallery.boot();
 Gallery.pointerControls();
 Gallery.movement();
 Gallery.create();
+Gallery.collada();
 Gallery.render();
 
 
