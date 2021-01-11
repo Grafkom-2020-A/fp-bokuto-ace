@@ -408,21 +408,49 @@ var Gallery = {
 	  // }
   },
 
-  collada: function(){
-    var loader = new THREE.ColladaLoader();
-				loader.load( './asset/model.dae', function ( collada ) {
+  // collada: function(){
+  //   var loader = new THREE.ColladaLoader();
+	// 			loader.load( './asset/model.dae', function() {
 
-					var animations = collada.animations;
-					var avatar = collada.scene;
+	// 				// var animations = collada.animations;
+	// 				// var avatar = collada.scene;
 
-					mixer = new THREE.AnimationMixer( avatar );
-					var action = mixer.clipAction( animations[ 0 ] ).play();
+	// 				// mixer = new THREE.AnimationMixer( avatar );
+	// 				// var action = mixer.clipAction( animations[ 0 ] ).play();
 
-					scene.add( avatar );
+	// 				// scene.add( avatar );
 
-				} );
-  },
+	// 			} );
+  // },
   
+  //OBJ LOADER
+  obj: function() {// instantiate a loader{}
+  const loader = new THREE.OBJLoader();
+  
+  // load a resource
+  loader.load(
+    // resource URL
+    'asset/3d-model.obj', //file contoh buat nyoba obj aja
+    // called when resource is loaded
+    function ( object ) {
+  
+      scene.add( object );
+  
+    },
+    // called when loading is in progresses
+    function ( xhr ) {
+  
+      console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+  
+    },
+    // called when loading has errors
+    function ( error ) {
+  
+      console.log( 'An error happened' );
+  
+    }
+  )},
+
   render: function () {
     requestAnimationFrame(Gallery.render);
 
@@ -528,7 +556,8 @@ Gallery.boot();
 Gallery.pointerControls();
 Gallery.movement();
 Gallery.create();
-Gallery.collada();
+//Gallery.collada();
+Gallery.obj();
 Gallery.render();
 
 
