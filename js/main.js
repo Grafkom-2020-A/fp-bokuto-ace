@@ -425,18 +425,41 @@ var Gallery = {
   
   //OBJ LOADER
   obj: function() {// instantiate a loader{}
-  const loader = new THREE.OBJLoader();
+  // var controls = new THREE.OrbitControls(camera, renderer.domElement);
+  // controls.enableDamping = true;
+  // controls.campingFactor = 0.25;
+  // controls.enableZoom = true;
+
+  // var keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(30, 100%, 75%)'), 1.0);
+  // keyLight.position.set(-100, 0, 100);
+
+  // var fillLight = new THREE.DirectionalLight(new THREE.Color('hsl(240, 100%, 75%)'), 0.75);
+  // fillLight.position.set(100, 0, 100);
+
+  // var backLight = new THREE.DirectionalLight(0xffffff, 1.0);
+  // backLight.position.set(100, 0, -100).normalize;
+  // this.scene.add(keyLight);
+  // this.scene.add(fillLight);
+  // this.scene.add(backLight);
+
+  var objLoader = new THREE.OBJLoader();
+
+  objLoader.setPath('./asset/');
+  objLoader.load('3d-model.obj', function(object){
+    // Gallery.object.position.z = 5;
+    // Gallery.object.position.x = 5;
+    Gallery.scene.add(object);
+  },
   
-  // load a resource
-  loader.load(
-    // resource URL
-    'asset/3d-model.obj', //file contoh buat nyoba obj aja
-    // called when resource is loaded
-    function ( object ) {
-  
-      scene.add( object );
-  
-    },
+  // // load a resource
+  // loader.load(
+  //   // resource URL
+  //   '../asset/3d-model.obj', //file contoh buat nyoba obj aja
+  //   // called when resource is loaded
+  //   function ( object ) {
+  //     object.position.y -=60;
+  //     scene.add( object );
+  //   },
     // called when loading is in progresses
     function ( xhr ) {
   
@@ -557,7 +580,7 @@ Gallery.pointerControls();
 Gallery.movement();
 Gallery.create();
 //Gallery.collada();
-Gallery.obj();
+// Gallery.obj();
 Gallery.render();
 
 
