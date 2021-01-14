@@ -470,7 +470,7 @@ var Gallery = {
       mallets.position.set(5, 0, -1);
 
       Gallery.scene.add(mallets);
-      Gallery.collider(mallets);
+      Gallery.collider.push(mallets);
     });
 
     // Gallery.colladaLoader.load('./asset/Saron/model.dae', function(object){
@@ -531,10 +531,10 @@ var Gallery = {
 	          plane.overdraw = true;
 	          if (index <= Math.floor(Gallery.num_of_paintings / 2) - 1) //bottom half
 	          {
-              plane.position.set(2.5 * index - 17.5, 5, -19.8); //y and z kept constant
+              plane.position.set(2.5 * index - 17.5, 2, -19.8); //y and z kept constant
              // plane.rotation.y = Math.PI/2;
 	          }else {
-              plane.position.set(2.5 * index - 55, 5, 19.8);
+              plane.position.set(2.5 * index - 55, 2, 19.8);
               plane.rotation.y = Math.PI;
 	          }
 
@@ -543,7 +543,7 @@ var Gallery = {
 	          	audioSource: './converted/' + index.toString() + '.mp3'
 	          }; // data relative to: music & information
 	          Gallery.scene.add(plane);
-	          Gallery.paintings.push(plane);
+	          Gallery.collider.push(plane);
 	      }
 	      img.map.needsUpdate = true; //ADDED
 	    }(i))
@@ -611,13 +611,13 @@ var Gallery = {
       //calculate objects interesting ray
       Gallery.intersects = Gallery.raycaster.intersectObjects(Gallery.collider, true);
       
-      // if(Gallery.lastIntersectObj !== undefined)
-      // 	Gallery.lastIntersectObj.material.color.set(0xffffff);
+      if(Gallery.lastIntersectObj !== undefined)
+      	Gallery.lastIntersectObj.material.color.set(0xffffff);
 
       if (Gallery.intersects.length !== 0) {
         // console.log(Gallery.intersects[0].distance);
         Gallery.lastIntersectObj = Gallery.intersects[0].object;
-        // Gallery.intersects[0].object.material.color.set(0xc2d9f0);
+        Gallery.intersects[0].object.material.color.set(0xc2d9f0);
         Gallery.pastX = Gallery.controls.getObject().position.x - 0.2;
         Gallery.pastZ = Gallery.controls.getObject().position.z- 0.2;
         if(Gallery.intersects[0].distance < 0.6){
