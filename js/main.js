@@ -373,8 +373,20 @@ var Gallery = {
       materials.preload();
       Gallery.objLoader.setMaterials(materials);
       Gallery.objLoader.load('./asset/Speaker.obj', (root) => {
-      // root.rotation.x = math.PI/2;
       root.position.set(-8, 1.5, -17); 
+      Gallery.scene.add(root);
+      Gallery.collider.push(root);
+
+      console.log('halo');
+      });
+    });
+
+    Gallery.mtlLoader.load("./asset/Speaker.mtl", function(materials){
+      
+      materials.preload();
+      Gallery.objLoader.setMaterials(materials);
+      Gallery.objLoader.load('./asset/Speaker.obj', (root) => {
+      root.position.set(-12, 1.5, -17); 
       Gallery.scene.add(root);
       Gallery.collider.push(root);
 
