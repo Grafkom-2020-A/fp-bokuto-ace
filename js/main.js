@@ -404,7 +404,6 @@ var Gallery = {
         console.log('halooook');
       }, 
       );
-     
      }
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
