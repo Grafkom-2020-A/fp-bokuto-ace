@@ -486,26 +486,26 @@ var Gallery = {
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
       angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0008;
-      angklung.position.set(5, 0, -5);
+      angklung.position.set(5, 0, -8);
 
       Gallery.scene.add(angklung);
       Gallery.collider.push(angklung);
     });
 
+
+    Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
+      var angklung = object.scene;
+      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0008;
+      angklung.position.set(5, 0, -6);
+
+      Gallery.scene.add(angklung);
+      Gallery.collider.push(angklung);
+    });
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
       angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0008;
       angklung.position.set(5, 0, -4);
-
-      Gallery.scene.add(angklung);
-      Gallery.collider.push(angklung);
-    });
-
-    Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
-      var angklung = object.scene;
-      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0008;
-      angklung.position.set(5, 0, -3);
 
       Gallery.scene.add(angklung);
       Gallery.collider.push(angklung);
