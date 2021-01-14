@@ -365,9 +365,9 @@ var Gallery = {
       materials.preload();
       Gallery.objLoader.setMaterials(materials);
       Gallery.objLoader.load('./asset/tent_poles_01.obj', (root) => {
-      root.position.set(10, 2, -2.96); 
+      root.position.set(10, 0, -2.96); 
       Gallery.scene.add(root);
-      console.log('haloooo')
+      Gallery.collider.push(root);
       });
     });
 
@@ -503,20 +503,20 @@ var Gallery = {
         Gallery.controls.getObject().position.x = 25;
       }
 
-      Gallery.raycaster.setFromCamera(Gallery.mouse.clone(), Gallery.camera);
+      Gallery.raycaster.setFromCamera(Gallery.mouse, Gallery.camera);
       //calculate objects interesting ray
       Gallery.intersects = Gallery.raycaster.intersectObjects(Gallery.collider, true);
       
-      if(Gallery.lastIntersectObj !== undefined)
-      	Gallery.lastIntersectObj.material.color.set(0xffffff);
+      // if(Gallery.lastIntersectObj !== undefined)
+      // 	Gallery.lastIntersectObj.material.color.set(0xffffff);
 
       if (Gallery.intersects.length !== 0) {
-        console.log(Gallery.intersects[0].distance);
+        // console.log(Gallery.intersects[0].distance);
         Gallery.lastIntersectObj = Gallery.intersects[0].object;
-        Gallery.intersects[0].object.material.color.set(0xc2d9f0);
+        // Gallery.intersects[0].object.material.color.set(0xc2d9f0);
         Gallery.pastX = Gallery.controls.getObject().position.x - 0.2;
         Gallery.pastZ = Gallery.controls.getObject().position.z- 0.2;
-        if(Gallery.intersects[0].distance < 0.5){
+        if(Gallery.intersects[0].distance < 0.6){
           Gallery.controls.getObject().position.x = Gallery.pastX;
           Gallery.controls.getObject().position.z = Gallery.pastZ;  
         }
