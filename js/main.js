@@ -391,6 +391,7 @@ var Gallery = {
       function (err) { console.error(err); }
     );
 
+    
       Gallery.mtlLoader.load("./asset/Speaker.mtl", function(materials){
       
       materials.preload();
