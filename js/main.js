@@ -374,7 +374,7 @@ var Gallery = {
       Gallery.objLoader.setMaterials(materials);
       Gallery.objLoader.load('./asset/Speaker.obj', (root) => {
       // root.rotation.x = math.PI/2;
-      root.position.set(-8, 2, -17); 
+      root.position.set(-8, 1.5, -17); 
       Gallery.scene.add(root);
       Gallery.collider.push(root);
 
