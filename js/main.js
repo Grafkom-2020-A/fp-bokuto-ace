@@ -370,15 +370,54 @@ var Gallery = {
       Gallery.collider.push(root);
       });
     });
+    
+    // Gallery.mtlLoader.load('./asset/gong.mtl', function(materials){
+      
+    //   materials.preload();
+    //   Gallery.objLoader.setMaterials(materials);
+    //   Gallery.objLoader.load('./asset/gong.obj', (root) => {
+      
+    //   root.position.set(5, 2, -2.96); 
+    //   Gallery.scene.add(root);
+    //   console.log('haloooo')
+    //   });
+    // });
 
-    // Gallery.colladaLoader.load("./asset/Angklungs/model.dae", function(object){
-    //   var angklung = object.scene;
-    //   angklung.position.set(10, 2, -2.96);
+    Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
+      var angklung = object.scene;
+      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0005;
+      angklung.position.set(5, 0, -5);
 
-    //   Gallery.scene.add(angklung);
-    //   console.log('halooook');
-    // }, function (err) { console.log('errorrrr'); }
-    // );
+      Gallery.scene.add(angklung);
+    }, function (err) { console.log('errorrrr'); }
+    );
+
+    Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
+      var angklung = object.scene;
+      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0005;
+      angklung.position.set(5, 0, -4);
+
+      Gallery.scene.add(angklung);
+    }, function (err) { console.log('errorrrr'); }
+    );
+
+    Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
+      var angklung = object.scene;
+      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0005;
+      angklung.position.set(5, 0, -3);
+
+      Gallery.scene.add(angklung);
+    }, function (err) { console.log('errorrrr'); }
+    );
+
+    Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
+      var angklung = object.scene;
+      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0005;
+      angklung.position.set(5, 0, -2);
+
+      Gallery.scene.add(angklung);
+    }, function (err) { console.log('errorrrr'); }
+    );
   
 	  Gallery.textureLoader.load('./asset/ceil.jpg',
       function (texture) {
