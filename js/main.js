@@ -361,119 +361,52 @@ var Gallery = {
       function (err) { console.error(err); }
 	  );
 
-	  // Gallery.artGroup = new THREE.Group();
+	  Gallery.artGroup = new THREE.Group();
 
-	  // Gallery.num_of_paintings = 30;
-	  // Gallery.paintings = [];
-	  // for (var i = 0; i < Gallery.num_of_paintings; i++) {
-	  //   (function (index) {
-	  //     var artwork = new Image();
-	  //     var ratiow = 0;
-	  //     var ratioh = 0;
+	  Gallery.num_of_paintings = 30;
+	  Gallery.paintings = [];
+	  for (var i = 0; i < Gallery.num_of_paintings; i++) {
+	    (function (index) {
+	      var artwork = new Image();
+	      var ratiow = 0;
+	      var ratioh = 0;
 
-	  //     var source = './images/' + (index).toString() + '.jpg';
-	  //     artwork.src = source;
-	  //     // artwork.height = 350;
-	  //     // artwork.width = 450;
+	      var source = './images/' + (index).toString() + '.jpg';
+	      artwork.src = source;
+	      // artwork.height = 350;
+	      // artwork.width = 450;
 
-	  //     //var texture = THREE.ImageUtils.loadTexture(artwork.src);
-	  //     var texture = Gallery.textureLoader.load(artwork.src);
-	  //     texture.minFilter = THREE.LinearFilter;
-	  //     var img = new THREE.MeshBasicMaterial({ map: texture });
+	      //var texture = THREE.ImageUtils.loadTexture(artwork.src);
+	      var texture = Gallery.textureLoader.load(artwork.src);
+	      texture.minFilter = THREE.LinearFilter;
+	      var img = new THREE.MeshBasicMaterial({ map: texture });
 
-    //     // Images Placement
-	  //     artwork.onload = function () {
-	  //         ratiow = artwork.width / 300;
-	  //         ratioh = artwork.height / 300;
-	  //         // plane for artwork
-	  //         var plane = new THREE.Mesh(new THREE.PlaneGeometry(ratiow, ratioh), img); //width, height
-	  //         plane.overdraw = true;
-	  //         if (index <= Math.floor(Gallery.num_of_paintings / 2) - 1) //bottom half
-	  //         {
-    //           plane.position.set(10 * index - 17.5, 2, -2.96); //y and z kept constant
-	  //         }else {
-    //           plane.position.set(10 * index - 55, 2, 2.96);
-    //           plane.rotation.y = Math.PI;
-	  //         }
+        // Images Placement
+	      artwork.onload = function () {
+	          ratiow = artwork.width / 300;
+	          ratioh = artwork.height / 300;
+	          // plane for artwork
+	          var plane = new THREE.Mesh(new THREE.PlaneGeometry(ratiow, ratioh), img); //width, height
+	          plane.overdraw = true;
+	          if (index <= Math.floor(Gallery.num_of_paintings / 2) - 1) //bottom half
+	          {
+              plane.position.set(10 * index - 17.5, 2, -2.96); //y and z kept constant
+	          }else {
+              plane.position.set(10 * index - 55, 2, 2.96);
+              plane.rotation.y = Math.PI;
+	          }
 
-	  //         plane.userData = {
-	  //         	test: true,
-	  //         	audioSource: './converted/' + index.toString() + '.mp3'
-	  //         }; // data relative to: music & information
-	  //         // Gallery.scene.add(plane);
-	  //         // Gallery.paintings.push(plane);
-	  //     }
-	  //     // img.map.needsUpdate = true; //ADDED
-	  //   }(i))
-	  // }
+	          plane.userData = {
+	          	test: true,
+	          	audioSource: './converted/' + index.toString() + '.mp3'
+	          }; // data relative to: music & information
+	          Gallery.scene.add(plane);
+	          Gallery.paintings.push(plane);
+	      }
+	      img.map.needsUpdate = true; //ADDED
+	    }(i))
+	  }
   },
-
-  // collada: function(){
-  //   var loader = new THREE.ColladaLoader();
-	// 			loader.load( './asset/model.dae', function() {
-
-	// 				// var animations = collada.animations;
-	// 				// var avatar = collada.scene;
-
-	// 				// mixer = new THREE.AnimationMixer( avatar );
-	// 				// var action = mixer.clipAction( animations[ 0 ] ).play();
-
-	// 				// scene.add( avatar );
-
-	// 			} );
-  // },
-  
-  //OBJ LOADER
-  obj: function() {// instantiate a loader{}
-  // var controls = new THREE.OrbitControls(camera, renderer.domElement);
-  // controls.enableDamping = true;
-  // controls.campingFactor = 0.25;
-  // controls.enableZoom = true;
-
-  // var keyLight = new THREE.DirectionalLight(new THREE.Color('hsl(30, 100%, 75%)'), 1.0);
-  // keyLight.position.set(-100, 0, 100);
-
-  // var fillLight = new THREE.DirectionalLight(new THREE.Color('hsl(240, 100%, 75%)'), 0.75);
-  // fillLight.position.set(100, 0, 100);
-
-  // var backLight = new THREE.DirectionalLight(0xffffff, 1.0);
-  // backLight.position.set(100, 0, -100).normalize;
-  // this.scene.add(keyLight);
-  // this.scene.add(fillLight);
-  // this.scene.add(backLight);
-
-  var objLoader = new THREE.OBJLoader();
-
-  objLoader.setPath('./asset/');
-  objLoader.load('3d-model.obj', function(object){
-    // Gallery.object.position.z = 5;
-    // Gallery.object.position.x = 5;
-    Gallery.scene.add(object);
-  },
-  
-  // // load a resource
-  // loader.load(
-  //   // resource URL
-  //   '../asset/3d-model.obj', //file contoh buat nyoba obj aja
-  //   // called when resource is loaded
-  //   function ( object ) {
-  //     object.position.y -=60;
-  //     scene.add( object );
-  //   },
-    // called when loading is in progresses
-    function ( xhr ) {
-  
-      console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
-  
-    },
-    // called when loading has errors
-    function ( error ) {
-  
-      console.log( 'An error happened' );
-  
-    }
-  )},
-
   render: function () {
     requestAnimationFrame(Gallery.render);
 
@@ -579,12 +512,7 @@ Gallery.boot();
 Gallery.pointerControls();
 Gallery.movement();
 Gallery.create();
-//Gallery.collada();
-// Gallery.obj();
 Gallery.render();
-
-
-
 
 function TextureAnimator(texture, tilesHoriz, tilesVert, numTiles, tileDispDuration) { 
   // note: texture passed by reference, will be updated by the update function.
