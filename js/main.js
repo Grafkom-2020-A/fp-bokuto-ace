@@ -26,7 +26,7 @@ var Gallery = {
     Gallery.camera.add(Gallery.audioListener);
     Gallery.sound = new THREE.PositionalAudio(Gallery.audioListener);
 
-    Gallery.scene.fog = new THREE.FogExp2(0x666666, 0.025);
+    Gallery.scene.fog = new THREE.FogExp2(0x666666, 0.05);
 
     Gallery.renderer.setSize(window.innerWidth, window.innerHeight);
     Gallery.renderer.setClearColor(0xffffff, 1);
@@ -258,8 +258,13 @@ var Gallery = {
 
   create: function () {
     //let there be light!
-    Gallery.worldLight = new THREE.AmbientLight(0xffffff);
+    Gallery.worldLight = new THREE.AmbientLight(0xd3d3d3, 0.3);
     Gallery.scene.add(Gallery.worldLight);
+
+    Gallery.lampStage = new THREE.SpotLight( 0xffffff, 0.5 );
+    Gallery.lampStage.position.set(0, 15, 0);
+    Gallery.lampStage.distance = 10.0;
+    Gallery.scene.add(Gallery.lampStage);
 
     Gallery.textureLoader.load('./asset/floor-pattern.jpg', function (texture) {
         texture.wrapS = THREE.RepeatWrapping;
@@ -285,6 +290,10 @@ var Gallery = {
         Gallery.ladderLeft2 = new THREE.Mesh(new THREE.BoxGeometry(1, 0.5, 3), Gallery.stageMaterial);
         Gallery.ladderRight1 = new THREE.Mesh(new THREE.BoxGeometry(1, 1.25, 3), Gallery.stageMaterial);
         Gallery.ladderRight2 = new THREE.Mesh(new THREE.BoxGeometry(1, 0.5, 3), Gallery.stageMaterial);
+
+        Gallery.lampStage.target = Gallery.stage;
+        Gallery.lampStage.target.updateMatrixWorld();
+        Gallery.scene.add(Gallery.lampStage);
 
         Gallery.collider.push(Gallery.stage);
         Gallery.collider.push(Gallery.ladderLeft1);
@@ -412,7 +421,7 @@ var Gallery = {
       angklung.position.set(5, 0, -5);
 
       Gallery.scene.add(angklung);
-      Gallery.collider(angklung);
+      Gallery.collider.push(angklung);
     }, function (err) { console.log('errorrrr'); }
     );
 
@@ -423,7 +432,7 @@ var Gallery = {
       angklung.position.set(5, 0, -4);
 
       Gallery.scene.add(angklung);
-      Gallery.collider(angklung);
+      Gallery.collider.push(angklung);
     }, function (err) { console.log('errorrrr'); }
     );
 
@@ -433,7 +442,7 @@ var Gallery = {
       angklung.position.set(5, 0, -3);
 
       Gallery.scene.add(angklung);
-      Gallery.collider(angklung);
+      Gallery.collider.push(angklung);
     }, function (err) { console.log('errorrrr'); }
     );
 
@@ -443,7 +452,7 @@ var Gallery = {
       angklung.position.set(5, 0, -2);
 
       Gallery.scene.add(angklung);
-      Gallery.collider(angklung);
+      Gallery.collider.push(angklung);
     }, function (err) { console.log('errorrrr'); }
     );
   
