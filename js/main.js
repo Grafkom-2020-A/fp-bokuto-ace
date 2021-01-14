@@ -373,7 +373,7 @@ var Gallery = {
       materials.preload();
       Gallery.objLoader.setMaterials(materials);
       Gallery.objLoader.load('./asset/Speaker.obj', (root) => {
-      root.position.set(-8, 2, -17); 
+      root.position.set(-8, 1.5, -17); 
       Gallery.scene.add(root);
       Gallery.collider.push(root);
 
@@ -386,7 +386,7 @@ var Gallery = {
       materials.preload();
       Gallery.objLoader.setMaterials(materials);
       Gallery.objLoader.load('./asset/Speaker.obj', (root) => {
-      root.position.set(-12, 2, -17); 
+      root.position.set(-12, 1.5, -17); 
       Gallery.scene.add(root);
       Gallery.collider.push(root);
 
