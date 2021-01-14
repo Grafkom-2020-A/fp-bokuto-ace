@@ -486,16 +486,16 @@ var Gallery = {
       Gallery.collider.push(mallets);
     });
 
-    Gallery.colladaLoader.load('./asset/Rebab/model.dae', function(object){
-      var kendang = object.scene;
-      kendang.scale.x = kendang.scale.y = kendang.scale.z = 0.0007;
-      // kendang.rotation.z = Math.PI / 2;
-      kendang.position.set(6, 0, 0);
+    // Gallery.colladaLoader.load('./asset/Rebab/model.dae', function(object){
+    //   var kendang = object.scene;
+    //   kendang.scale.x = kendang.scale.y = kendang.scale.z = 0.0007;
+    //   // kendang.rotation.z = Math.PI / 2;
+    //   kendang.position.set(6, 0, 0);
 
-      Gallery.scene.add(kendang);
-      Gallery.collider(kendang);
-    }
-    );
+    //   Gallery.scene.add(kendang);
+    //   Gallery.collider(kendang);
+    // }
+    // );
   
 	  Gallery.textureLoader.load('./asset/ceil.jpg',
       function (texture) {
