@@ -109,6 +109,15 @@ var Gallery = {
             }
           });
 
+          document.addEventListener("keydown", function (e) {
+            if (e.keyCode === 188) {
+              Gallery.scene.remove(Gallery.lampStage);
+            }
+            if (e.keyCode === 190) {
+              Gallery.scene.add(Gallery.lampStage);
+            }
+          });
+
           document.addEventListener('click', function() {
           	if (Gallery.controls.enabled === true) {
           		Gallery.sound.pause();
@@ -186,7 +195,7 @@ var Gallery = {
       document.removeEventListener("mousemove", Gallery.moveCallback, false);
     }
   },
-
+  
   errorCallback: function (event) {
       alert("Pointer Lock Failed");
   },
@@ -278,6 +287,20 @@ var Gallery = {
         Gallery.floor.rotation.y = Math.PI;
         Gallery.scene.add(Gallery.floor);
     }, undefined, function (err) { console.error(err) });
+
+    Gallery.textureLoader.load('./asset/scream.jpg', function (texture) {
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      texture.repeat.set(1, 1);
+
+      Gallery.bgStageMat = new THREE.MeshPhongMaterial({ map: texture });
+      Gallery.bgStage = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), Gallery.bgStageMat);
+
+      Gallery.bgStage.position.x = 20;
+      Gallery.bgStage.rotation.y = Math.PI / 2;;
+      Gallery.scene.add(Gallery.floor);
+    }, undefined, function (err) { console.error(err) });
+
 
     Gallery.stageGroup = new THREE.Group();
     Gallery.scene.add(Gallery.stageGroup);
