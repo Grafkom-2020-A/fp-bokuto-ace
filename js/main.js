@@ -464,7 +464,7 @@ var Gallery = {
     );
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
-      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0005;
+      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0008;
       angklung.position.set(5, 0, -5);
 
       Gallery.scene.add(angklung);
@@ -474,7 +474,7 @@ var Gallery = {
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
-      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0005;
+      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0008;
       angklung.position.set(5, 0, -4);
 
       Gallery.scene.add(angklung);
@@ -483,7 +483,7 @@ var Gallery = {
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
-      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0005;
+      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0008;
       angklung.position.set(5, 0, -3);
 
       Gallery.scene.add(angklung);
@@ -492,7 +492,7 @@ var Gallery = {
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
-      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0005;
+      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0008;
       angklung.position.set(5, 0, -2);
 
       Gallery.scene.add(angklung);
@@ -501,24 +501,24 @@ var Gallery = {
 
     Gallery.colladaLoader.load('./asset/Gong+mallets/model.dae', function(object){
       var mallets = object.scene;
-      mallets.scale.x = mallets.scale.y = mallets.scale.z = 0.001;
+      mallets.scale.x = mallets.scale.y = mallets.scale.z = 0.0015;
       mallets.rotation.z = Math.PI / 2;
-      mallets.position.set(5, 0, -1);
+      mallets.position.set(5, 0, 0);
 
       Gallery.scene.add(mallets);
       Gallery.collider.push(mallets);
     });
 
-    // Gallery.colladaLoader.load('./asset/Saron/model.dae', function(object){
-    //   var gong = object.scene;
-    //   gong.scale.x = gong.scale.y = gong.scale.z = 0.007;
-    //   gong.rotation.z = Math.PI / 2;
-    //   gong.position.set(6, 0, 0);
+    // Gallery.colladaLoader.load('./asset/Rebab/model.dae', function(object){
+    //   var kendang = object.scene;
+    //   kendang.scale.x = kendang.scale.y = kendang.scale.z = 0.0007;
+    //   // kendang.rotation.z = Math.PI / 2;
+    //   kendang.position.set(6, 0, 0);
 
-    //   Gallery.scene.add(gong);
-    //   Gallery.collider(gong);
+    //   Gallery.scene.add(kendang);
+    //   Gallery.collider(kendang);
     // }
-    //);
+    // );
   
 	  Gallery.textureLoader.load('./asset/ceil.jpg',
       function (texture) {
