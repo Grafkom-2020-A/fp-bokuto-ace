@@ -17,6 +17,8 @@ var Gallery = {
     Gallery.mouse.z = 0.0001;
   },
   boot: function () {
+    // Collider array
+    Gallery.collider = [];
     //renderer time delta
     Gallery.prevTime = performance.now();
 
@@ -113,7 +115,7 @@ var Gallery = {
           		Gallery.sound.pause();
 							Gallery.raycaster.setFromCamera(Gallery.mouse.clone(), Gallery.camera);
 				      //calculate objects interesting ray
-				      Gallery.intersects = Gallery.raycaster.intersectObjects(Gallery.paintings);
+				      Gallery.intersects = Gallery.raycaster.intersectObjects(Gallery.collider);
 				      if (Gallery.intersects.length !== 0) {
 				        console.log(Gallery.intersects[0]);
 				        var audioSrc = Gallery.intersects[0].object.userData.audioSource;
@@ -285,6 +287,12 @@ var Gallery = {
         Gallery.ladderRight1 = new THREE.Mesh(new THREE.BoxGeometry(1, 1.25, 3), Gallery.stageMaterial);
         Gallery.ladderRight2 = new THREE.Mesh(new THREE.BoxGeometry(1, 0.5, 3), Gallery.stageMaterial);
 
+        Gallery.collider.push(Gallery.stage);
+        Gallery.collider.push(Gallery.ladderLeft1);
+        Gallery.collider.push(Gallery.ladderLeft2);
+        Gallery.collider.push(Gallery.ladderRight1);
+        Gallery.collider.push(Gallery.ladderRight2)
+
         Gallery.stageGroup.add(Gallery.stage, Gallery.ladderLeft1, Gallery.ladderLeft2, Gallery.ladderRight1, Gallery.ladderRight2);
 
         Gallery.stage.position.x =   16;
@@ -363,14 +371,14 @@ var Gallery = {
       });
     });
 
-    Gallery.colladaLoader.load("./asset/Angklungs/model.dae", function(object){
-      var angklung = object.scene;
-      angklung.position.set(10, 2, -2.96);
+    // Gallery.colladaLoader.load("./asset/Angklungs/model.dae", function(object){
+    //   var angklung = object.scene;
+    //   angklung.position.set(10, 2, -2.96);
 
-      Gallery.scene.add(angklung);
-      console.log('halooook');
-    }, function (err) { console.log('errorrrr'); }
-    );
+    //   Gallery.scene.add(angklung);
+    //   console.log('halooook');
+    // }, function (err) { console.log('errorrrr'); }
+    // );
   
 	  Gallery.textureLoader.load('./asset/ceil.jpg',
       function (texture) {
@@ -482,30 +490,36 @@ var Gallery = {
          Gallery.controls.getObject().position.y = 1.75;
       }
 
-      if (Gallery.controls.getObject().position.z < -18) {
-        Gallery.controls.getObject().position.z = -18;
+      if (Gallery.controls.getObject().position.z < -25) {
+        Gallery.controls.getObject().position.z = -25;
       }
-      if (Gallery.controls.getObject().position.z > 18) {
-        Gallery.controls.getObject().position.z = 18;
+      if (Gallery.controls.getObject().position.z > 25) {
+        Gallery.controls.getObject().position.z = 25;
       }
-      if (Gallery.controls.getObject().position.x < -18) {
-        Gallery.controls.getObject().position.x = -18;
+      if (Gallery.controls.getObject().position.x < -25) {
+        Gallery.controls.getObject().position.x = -25;
       }
-      if (Gallery.controls.getObject().position.x > 18) {
-        Gallery.controls.getObject().position.x = 18;
+      if (Gallery.controls.getObject().position.x > 25) {
+        Gallery.controls.getObject().position.x = 25;
       }
 
       Gallery.raycaster.setFromCamera(Gallery.mouse.clone(), Gallery.camera);
       //calculate objects interesting ray
-      Gallery.intersects = Gallery.raycaster.intersectObjects(Gallery.paintings);
-
+      Gallery.intersects = Gallery.raycaster.intersectObjects(Gallery.collider, true);
+      
       if(Gallery.lastIntersectObj !== undefined)
       	Gallery.lastIntersectObj.material.color.set(0xffffff);
 
       if (Gallery.intersects.length !== 0) {
-        //console.log(Gallery.intersects[0]);
+        console.log(Gallery.intersects[0].distance);
         Gallery.lastIntersectObj = Gallery.intersects[0].object;
         Gallery.intersects[0].object.material.color.set(0xc2d9f0);
+        Gallery.pastX = Gallery.controls.getObject().position.x - 0.2;
+        Gallery.pastZ = Gallery.controls.getObject().position.z- 0.2;
+        if(Gallery.intersects[0].distance < 0.5){
+          Gallery.controls.getObject().position.x = Gallery.pastX;
+          Gallery.controls.getObject().position.z = Gallery.pastZ;  
+        }
       }
 
       for (var i = 0; i < Gallery.wallGroup.children.length; i++) {
@@ -515,9 +529,6 @@ var Gallery = {
         	Gallery.wallGroup.children[i].material.color.set(0xffffff);
         }
       }
-      
-      Gallery.pastX = Gallery.controls.getObject().position.x;
-      Gallery.pastZ = Gallery.controls.getObject().position.z;
 
       Gallery.user.BBox.setFromObject(Gallery.user);
 
