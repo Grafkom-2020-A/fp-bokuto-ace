@@ -9,6 +9,7 @@ var Gallery = {
   textureLoader: new THREE.TextureLoader(),
   objLoader: new THREE.OBJLoader(),
   mtlLoader: new THREE.MTLLoader(),
+  colladaLoader: new THREE.ColladaLoader(),
 
   raycastSetUp: function () {
     Gallery.mouse.x = 0; //(0.5) * 2 - 1;
@@ -361,6 +362,15 @@ var Gallery = {
       console.log('haloooo')
       });
     });
+
+    Gallery.colladaLoader.load("./asset/Angklungs/model.dae", function(object){
+      var angklung = object.scene;
+      angklung.position.set(10, 2, -2.96);
+
+      Gallery.scene.add(angklung);
+      console.log('halooook');
+    }, function (err) { console.log('errorrrr'); }
+    );
   
 	  Gallery.textureLoader.load('./asset/ceil.jpg',
       function (texture) {
