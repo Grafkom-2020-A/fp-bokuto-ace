@@ -112,6 +112,10 @@ var Gallery = {
           document.addEventListener("keydown", function (e) {
             if (e.keyCode === 188) {
               Gallery.scene.remove(Gallery.lampStage);
+              alert("Kamu berhasil keluar!");
+              Gallery.toggleFullscreen();
+              //refer to below event listener:
+              Gallery.canvas.requestPointerLock();
             }
             if (e.keyCode === 190) {
               Gallery.scene.add(Gallery.lampStage);
@@ -525,17 +529,6 @@ var Gallery = {
       Gallery.scene.add(mallets);
       Gallery.collider.push(mallets);
     });
-
-    // Gallery.colladaLoader.load('./asset/Rebab/model.dae', function(object){
-    //   var kendang = object.scene;
-    //   kendang.scale.x = kendang.scale.y = kendang.scale.z = 0.0007;
-    //   // kendang.rotation.z = Math.PI / 2;
-    //   kendang.position.set(6, 0, 0);
-
-    //   Gallery.scene.add(kendang);
-    //   Gallery.collider(kendang);
-    // }
-    // );
   
 	  Gallery.textureLoader.load('./asset/ceil.jpg',
       function (texture) {
