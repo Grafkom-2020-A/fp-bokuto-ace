@@ -367,15 +367,18 @@ var Gallery = {
       undefined,
       function (err) { console.error(err); }
     );
-      Gallery.mtlLoader = new THREE.MTLLoader();
-      Gallery.mtlLoader.load("./asset/gong.mtl", function(materials){
+
+      Gallery.mtlLoader.load("./asset/Speaker.mtl", function(materials){
       
       materials.preload();
       Gallery.objLoader.setMaterials(materials);
-      Gallery.objLoader.load('./asset/gong.obj', (root) => {
-      root.position.set(6, 0, 0); 
+      Gallery.objLoader.load('./asset/Speaker.obj', (root) => {
+      // root.rotation.x = math.PI/2;
+      root.position.set(-8, 2, -17); 
       Gallery.scene.add(root);
       Gallery.collider.push(root);
+
+      console.log('halo');
       });
     });
 
@@ -410,14 +413,8 @@ var Gallery = {
       angklung.position.set(5, 0, -5);
 
       Gallery.scene.add(angklung);
-<<<<<<< HEAD
       Gallery.collider.push(angklung);
-    }, function (err) { console.log('errorrrr'); }
-    );
-=======
-      Gallery.collider(angklung);
     });
->>>>>>> 2c5bc3d1e46bdb4422358e63ab01cc706537d6c4
 
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
@@ -426,14 +423,8 @@ var Gallery = {
       angklung.position.set(5, 0, -4);
 
       Gallery.scene.add(angklung);
-<<<<<<< HEAD
       Gallery.collider.push(angklung);
-    }, function (err) { console.log('errorrrr'); }
-    );
-=======
-      Gallery.collider(angklung);
     });
->>>>>>> 2c5bc3d1e46bdb4422358e63ab01cc706537d6c4
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
@@ -441,14 +432,8 @@ var Gallery = {
       angklung.position.set(5, 0, -3);
 
       Gallery.scene.add(angklung);
-<<<<<<< HEAD
       Gallery.collider.push(angklung);
-    }, function (err) { console.log('errorrrr'); }
-    );
-=======
-      Gallery.collider(angklung);
     });
->>>>>>> 2c5bc3d1e46bdb4422358e63ab01cc706537d6c4
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
@@ -456,12 +441,7 @@ var Gallery = {
       angklung.position.set(5, 0, -2);
 
       Gallery.scene.add(angklung);
-<<<<<<< HEAD
       Gallery.collider.push(angklung);
-    }, function (err) { console.log('errorrrr'); }
-    );
-=======
-      Gallery.collider(angklung);
     });
 
     Gallery.colladaLoader.load('./asset/Gong+mallets/model.dae', function(object){
@@ -484,7 +464,6 @@ var Gallery = {
     //   Gallery.collider(gong);
     // }
     //);
->>>>>>> 2c5bc3d1e46bdb4422358e63ab01cc706537d6c4
   
 	  Gallery.textureLoader.load('./asset/ceil.jpg',
       function (texture) {
