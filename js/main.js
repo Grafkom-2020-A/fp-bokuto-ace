@@ -382,6 +382,31 @@ var Gallery = {
     //   console.log('haloooo')
     //   });
     // });
+    for (var  i = 0; i < 2; i++) {
+      Gallery.colladaLoader.load("./asset/Arena+1301-050PP/model.dae", function(object){
+        var kursi = object.scene;
+        kursi.scale.x = kursi.scale.y = kursi.scale.z = 0.07;
+        kursi.rotation.z = Math.PI / 2;
+
+       // var p = kursi.position.array;
+
+        kursi.position.set(-16 + (i + 2) , 0, -2);
+        // let x, y, z;
+        // x = -16;
+        // y = 0; 
+        // z = -2;
+
+        //   p[i] = x + (2 + i);
+        //   p[i] = y;
+        //   p[i] = z;
+
+        Gallery.scene.add(kursi );
+      //  kursi.position.array.needsUpdate = true;
+        console.log('halooook');
+      }, 
+      );
+     
+     }
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
@@ -391,6 +416,7 @@ var Gallery = {
       Gallery.scene.add(angklung);
     }, function (err) { console.log('errorrrr'); }
     );
+
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
