@@ -109,6 +109,15 @@ var Gallery = {
             }
           });
 
+          document.addEventListener("keydown", function (e) {
+            if (e.keyCode === 188) {
+              Gallery.scene.remove(Gallery.lampStage);
+            }
+            if (e.keyCode === 190) {
+              Gallery.scene.add(Gallery.lampStage);
+            }
+          });
+
           document.addEventListener('click', function() {
           	if (Gallery.controls.enabled === true) {
           		Gallery.sound.pause();
@@ -186,7 +195,7 @@ var Gallery = {
       document.removeEventListener("mousemove", Gallery.moveCallback, false);
     }
   },
-
+  
   errorCallback: function (event) {
       alert("Pointer Lock Failed");
   },
@@ -278,6 +287,20 @@ var Gallery = {
         Gallery.floor.rotation.y = Math.PI;
         Gallery.scene.add(Gallery.floor);
     }, undefined, function (err) { console.error(err) });
+
+    Gallery.textureLoader.load('./asset/scream.jpg', function (texture) {
+      texture.wrapS = THREE.RepeatWrapping;
+      texture.wrapT = THREE.RepeatWrapping;
+      texture.repeat.set(1, 1);
+
+      Gallery.bgStageMat = new THREE.MeshPhongMaterial({ map: texture });
+      Gallery.bgStage = new THREE.Mesh(new THREE.PlaneGeometry(40, 40), Gallery.bgStageMat);
+
+      Gallery.bgStage.position.x = 20;
+      Gallery.bgStage.rotation.y = Math.PI / 2;;
+      Gallery.scene.add(Gallery.floor);
+    }, undefined, function (err) { console.error(err) });
+
 
     Gallery.stageGroup = new THREE.Group();
     Gallery.scene.add(Gallery.stageGroup);
@@ -459,7 +482,7 @@ var Gallery = {
     );
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
-      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0005;
+      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0008;
       angklung.position.set(5, 0, -5);
 
       Gallery.scene.add(angklung);
@@ -469,7 +492,7 @@ var Gallery = {
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
-      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0005;
+      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0008;
       angklung.position.set(5, 0, -4);
 
       Gallery.scene.add(angklung);
@@ -478,7 +501,7 @@ var Gallery = {
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
-      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0005;
+      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0008;
       angklung.position.set(5, 0, -3);
 
       Gallery.scene.add(angklung);
@@ -487,7 +510,7 @@ var Gallery = {
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
-      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0005;
+      angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0008;
       angklung.position.set(5, 0, -2);
 
       Gallery.scene.add(angklung);
@@ -496,24 +519,24 @@ var Gallery = {
 
     Gallery.colladaLoader.load('./asset/Gong+mallets/model.dae', function(object){
       var mallets = object.scene;
-      mallets.scale.x = mallets.scale.y = mallets.scale.z = 0.001;
+      mallets.scale.x = mallets.scale.y = mallets.scale.z = 0.0015;
       mallets.rotation.z = Math.PI / 2;
-      mallets.position.set(5, 0, -1);
+      mallets.position.set(5, 0, 0);
 
       Gallery.scene.add(mallets);
-      Gallery.collider(mallets);
+      Gallery.collider.push(mallets);
     });
 
-    // Gallery.colladaLoader.load('./asset/Saron/model.dae', function(object){
-    //   var gong = object.scene;
-    //   gong.scale.x = gong.scale.y = gong.scale.z = 0.007;
-    //   gong.rotation.z = Math.PI / 2;
-    //   gong.position.set(6, 0, 0);
+    // Gallery.colladaLoader.load('./asset/Rebab/model.dae', function(object){
+    //   var kendang = object.scene;
+    //   kendang.scale.x = kendang.scale.y = kendang.scale.z = 0.0007;
+    //   // kendang.rotation.z = Math.PI / 2;
+    //   kendang.position.set(6, 0, 0);
 
-    //   Gallery.scene.add(gong);
-    //   Gallery.collider(gong);
+    //   Gallery.scene.add(kendang);
+    //   Gallery.collider(kendang);
     // }
-    //);
+    // );
   
 	  Gallery.textureLoader.load('./asset/ceil.jpg',
       function (texture) {
@@ -562,10 +585,10 @@ var Gallery = {
 	          plane.overdraw = true;
 	          if (index <= Math.floor(Gallery.num_of_paintings / 2) - 1) //bottom half
 	          {
-              plane.position.set(2.5 * index - 17.5, 5, -19.8); //y and z kept constant
+              plane.position.set(2.5 * index - 17.5, 2, -19.8); //y and z kept constant
              // plane.rotation.y = Math.PI/2;
 	          }else {
-              plane.position.set(2.5 * index - 55, 5, 19.8);
+              plane.position.set(2.5 * index - 55, 2, 19.8);
               plane.rotation.y = Math.PI;
 	          }
 
@@ -574,7 +597,7 @@ var Gallery = {
 	          	audioSource: './converted/' + index.toString() + '.mp3'
 	          }; // data relative to: music & information
 	          Gallery.scene.add(plane);
-	          Gallery.paintings.push(plane);
+	          Gallery.collider.push(plane);
 	      }
 	      img.map.needsUpdate = true; //ADDED
 	    }(i))
@@ -642,13 +665,13 @@ var Gallery = {
       //calculate objects interesting ray
       Gallery.intersects = Gallery.raycaster.intersectObjects(Gallery.collider, true);
       
-      // if(Gallery.lastIntersectObj !== undefined)
-      // 	Gallery.lastIntersectObj.material.color.set(0xffffff);
+      if(Gallery.lastIntersectObj !== undefined)
+      	Gallery.lastIntersectObj.material.color.set(0xffffff);
 
       if (Gallery.intersects.length !== 0) {
         // console.log(Gallery.intersects[0].distance);
         Gallery.lastIntersectObj = Gallery.intersects[0].object;
-        // Gallery.intersects[0].object.material.color.set(0xc2d9f0);
+        Gallery.intersects[0].object.material.color.set(0xc2d9f0);
         Gallery.pastX = Gallery.controls.getObject().position.x - 0.2;
         Gallery.pastZ = Gallery.controls.getObject().position.z- 0.2;
         if(Gallery.intersects[0].distance < 0.6){
