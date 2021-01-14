@@ -1,7 +1,7 @@
 var Gallery = {
   scene: new THREE.Scene(),
   camera: new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000),
-  renderer: new THREE.WebGLRenderer({ antialias: true }),
+  renderer: new THREE.WebGLRenderer({ antialias: false }),
   raycaster: new THREE.Raycaster(),
   mouse: new THREE.Vector3(),
   audio: new Audio(),
@@ -10,7 +10,6 @@ var Gallery = {
   objLoader: new THREE.OBJLoader(),
   mtlLoader: new THREE.MTLLoader(),
   colladaLoader: new THREE.ColladaLoader(),
-
   raycastSetUp: function () {
     Gallery.mouse.x = 0; //(0.5) * 2 - 1;
     Gallery.mouse.y = 0; //(0.5) * 2 + 1;
@@ -115,7 +114,7 @@ var Gallery = {
           		Gallery.sound.pause();
 							Gallery.raycaster.setFromCamera(Gallery.mouse.clone(), Gallery.camera);
 				      //calculate objects interesting ray
-				      Gallery.intersects = Gallery.raycaster.intersectObjects(Gallery.collider);
+				      Gallery.intersects = Gallery.raycaster.intersectObjects(Gallery.collider, true);
 				      if (Gallery.intersects.length !== 0) {
 				        console.log(Gallery.intersects[0]);
 				        var audioSrc = Gallery.intersects[0].object.userData.audioSource;
@@ -359,17 +358,17 @@ var Gallery = {
       undefined,
       function (err) { console.error(err); }
     );
-      Gallery.mtlLoader = new THREE.MTLLoader();
-      Gallery.mtlLoader.load("./asset/Tent_Poles_01.mtl", function(materials){
+    //   Gallery.mtlLoader = new THREE.MTLLoader();
+    //   Gallery.mtlLoader.load("./asset/Tent_Poles_01.mtl", function(materials){
       
-      materials.preload();
-      Gallery.objLoader.setMaterials(materials);
-      Gallery.objLoader.load('./asset/tent_poles_01.obj', (root) => {
-      root.position.set(10, 0, -2.96); 
-      Gallery.scene.add(root);
-      Gallery.collider.push(root);
-      });
-    });
+    //   materials.preload();
+    //   Gallery.objLoader.setMaterials(materials);
+    //   Gallery.objLoader.load('./asset/tent_poles_01.obj', (root) => {
+    //   root.position.set(10, 0, -2.96); 
+    //   Gallery.scene.add(root);
+    //   Gallery.collider.push(root);
+    //   });
+    // });
     
     // Gallery.mtlLoader.load('./asset/gong.mtl', function(materials){
       
@@ -389,6 +388,7 @@ var Gallery = {
       angklung.position.set(5, 0, -5);
 
       Gallery.scene.add(angklung);
+      Gallery.collider(angklung);
     }, function (err) { console.log('errorrrr'); }
     );
 
@@ -398,6 +398,7 @@ var Gallery = {
       angklung.position.set(5, 0, -4);
 
       Gallery.scene.add(angklung);
+      Gallery.collider(angklung);
     }, function (err) { console.log('errorrrr'); }
     );
 
@@ -407,6 +408,7 @@ var Gallery = {
       angklung.position.set(5, 0, -3);
 
       Gallery.scene.add(angklung);
+      Gallery.collider(angklung);
     }, function (err) { console.log('errorrrr'); }
     );
 
@@ -416,6 +418,7 @@ var Gallery = {
       angklung.position.set(5, 0, -2);
 
       Gallery.scene.add(angklung);
+      Gallery.collider(angklung);
     }, function (err) { console.log('errorrrr'); }
     );
   
@@ -466,10 +469,10 @@ var Gallery = {
 	          plane.overdraw = true;
 	          if (index <= Math.floor(Gallery.num_of_paintings / 2) - 1) //bottom half
 	          {
-              plane.position.set(2.5 * index - 17.5, 5, -19); //y and z kept constant
+              plane.position.set(2.5 * index - 17.5, 5, -19.8); //y and z kept constant
              // plane.rotation.y = Math.PI/2;
 	          }else {
-              plane.position.set(2.5 * index - 55, 5, 19);
+              plane.position.set(2.5 * index - 55, 5, 19.8);
               plane.rotation.y = Math.PI;
 	          }
 
@@ -494,7 +497,7 @@ var Gallery = {
       var currentTime = performance.now(); //returns time in milliseconds
       //accurate to the thousandth of a millisecond
       //want to get the most accurate and smallest change in time
-      var delta = (currentTime - Gallery.prevTime) / 1000;
+      var delta = (currentTime - Gallery.prevTime) / 800;
 
       //there's a constant deceleration that needs to be applied
       //only when the object is currently in motion
@@ -529,17 +532,17 @@ var Gallery = {
          Gallery.controls.getObject().position.y = 1.75;
       }
 
-      if (Gallery.controls.getObject().position.z < -25) {
-        Gallery.controls.getObject().position.z = -25;
+      if (Gallery.controls.getObject().position.z < -19) {
+        Gallery.controls.getObject().position.z = -19;
       }
-      if (Gallery.controls.getObject().position.z > 25) {
-        Gallery.controls.getObject().position.z = 25;
+      if (Gallery.controls.getObject().position.z > 19) {
+        Gallery.controls.getObject().position.z = 19;
       }
-      if (Gallery.controls.getObject().position.x < -25) {
-        Gallery.controls.getObject().position.x = -25;
+      if (Gallery.controls.getObject().position.x < -19) {
+        Gallery.controls.getObject().position.x = -19;
       }
-      if (Gallery.controls.getObject().position.x > 25) {
-        Gallery.controls.getObject().position.x = 25;
+      if (Gallery.controls.getObject().position.x > 19) {
+        Gallery.controls.getObject().position.x = 19;
       }
 
       Gallery.raycaster.setFromCamera(Gallery.mouse, Gallery.camera);
