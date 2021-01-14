@@ -7,6 +7,9 @@ var Gallery = {
   audio: new Audio(),
   audioListener: new THREE.AudioListener(),
   textureLoader: new THREE.TextureLoader(),
+  objLoader: new THREE.OBJLoader(),
+  mtlLoader: new THREE.MTLLoader(),
+
   raycastSetUp: function () {
     Gallery.mouse.x = 0; //(0.5) * 2 - 1;
     Gallery.mouse.y = 0; //(0.5) * 2 + 1;
@@ -341,8 +344,19 @@ var Gallery = {
       },
       undefined,
       function (err) { console.error(err); }
-  	);
-
+    );
+      Gallery.mtlLoader = new THREE.MTLLoader();
+      Gallery.mtlLoader.load("./asset/Tent_Poles_01.mtl", function(materials){
+      
+      materials.preload();
+      Gallery.objLoader.setMaterials(materials);
+      Gallery.objLoader.load('./asset/tent_poles_01.obj', (root) => {
+      root.position.set(10, 2, -2.96); 
+      Gallery.scene.add(root);
+      console.log('haloooo')
+      });
+    });
+  
 	  Gallery.textureLoader.load('./asset/ceil.jpg',
       function (texture) {
           texture.wrapS = THREE.RepeatWrapping;
@@ -405,7 +419,9 @@ var Gallery = {
 	      }
 	      img.map.needsUpdate = true; //ADDED
 	    }(i))
-	  }
+    }
+   
+
   },
   render: function () {
     requestAnimationFrame(Gallery.render);
