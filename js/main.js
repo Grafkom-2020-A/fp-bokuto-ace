@@ -261,9 +261,9 @@ var Gallery = {
     Gallery.worldLight = new THREE.AmbientLight(0xd3d3d3, 0.3);
     Gallery.scene.add(Gallery.worldLight);
 
-    Gallery.lampStage = new THREE.SpotLight( 0xffffff, 0.5 );
+    Gallery.lampStage = new THREE.SpotLight( 0xffffff, 0.5);
     Gallery.lampStage.position.set(0, 15, 0);
-    Gallery.lampStage.distance = 10.0;
+
     Gallery.scene.add(Gallery.lampStage);
 
     Gallery.textureLoader.load('./asset/floor-pattern.jpg', function (texture) {
