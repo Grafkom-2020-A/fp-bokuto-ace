@@ -286,25 +286,30 @@ var Gallery = {
 
         Gallery.stageGroup.add(Gallery.stage, Gallery.ladderLeft1, Gallery.ladderLeft2, Gallery.ladderRight1, Gallery.ladderRight2);
 
-        Gallery.stage.position.x =   0;
+        Gallery.stage.position.x =   16;
         Gallery.stage.position.y =   1;
-        Gallery.stage.position.z = -16;
+        Gallery.stage.position.z = 0;
+        Gallery.stage.rotation.y = Math.PI/2;
         
-        Gallery.ladderLeft1.position.x =  -10.5;
+        Gallery.ladderLeft1.position.x =  15;
         Gallery.ladderLeft1.position.y =   0.62;
-        Gallery.ladderLeft1.position.z =    -15;
+        Gallery.ladderLeft1.position.z =    -10.5;
+        Gallery.ladderLeft1.rotation.y = Math.PI/2;
         
-        Gallery.ladderLeft2.position.x = -11.51;
-        Gallery.ladderLeft2.position.y =    0.3;
-        Gallery.ladderLeft2.position.z =    -15;
+        Gallery.ladderLeft2.position.x = 15;
+        Gallery.ladderLeft2.position.y = 0.3;
+        Gallery.ladderLeft2.position.z = -11.51;
+        Gallery.ladderLeft2.rotation.y = Math.PI/2;
 
-        Gallery.ladderRight1.position.x =  10.5;
+        Gallery.ladderRight1.position.x =  15;
         Gallery.ladderRight1.position.y =  0.62;
-        Gallery.ladderRight1.position.z =   -15;
+        Gallery.ladderRight1.position.z =   10.5;
+        Gallery.ladderRight1.rotation.y = Math.PI/2;
         
-        Gallery.ladderRight2.position.x =  11.5;
+        Gallery.ladderRight2.position.x =  15;
         Gallery.ladderRight2.position.y =  0.3;
-        Gallery.ladderRight2.position.z =   -15;
+        Gallery.ladderRight2.position.z =   11.5;
+        Gallery.ladderRight2.rotation.y = Math.PI/2;
 
       }, undefined, function (err) {console.error(err)});
 
@@ -404,9 +409,10 @@ var Gallery = {
 	          plane.overdraw = true;
 	          if (index <= Math.floor(Gallery.num_of_paintings / 2) - 1) //bottom half
 	          {
-              plane.position.set(10 * index - 17.5, 2, -2.96); //y and z kept constant
+              plane.position.set(2.5 * index - 17.5, 5, -19); //y and z kept constant
+             // plane.rotation.y = Math.PI/2;
 	          }else {
-              plane.position.set(10 * index - 55, 2, 2.96);
+              plane.position.set(2.5 * index - 55, 5, 19);
               plane.rotation.y = Math.PI;
 	          }
 
