@@ -26,7 +26,7 @@ var Gallery = {
     Gallery.camera.add(Gallery.audioListener);
     Gallery.sound = new THREE.PositionalAudio(Gallery.audioListener);
 
-    Gallery.scene.fog = new THREE.FogExp2(0x666666, 0.025);
+    Gallery.scene.fog = new THREE.FogExp2(0x666666, 0.05);
 
     Gallery.renderer.setSize(window.innerWidth, window.innerHeight);
     Gallery.renderer.setClearColor(0xffffff, 1);
@@ -258,8 +258,13 @@ var Gallery = {
 
   create: function () {
     //let there be light!
-    Gallery.worldLight = new THREE.AmbientLight(0xffffff);
+    Gallery.worldLight = new THREE.AmbientLight(0xd3d3d3, 0.3);
     Gallery.scene.add(Gallery.worldLight);
+
+    Gallery.lampStage = new THREE.SpotLight( 0xffffff, 0.5 );
+    Gallery.lampStage.position.set(0, 15, 0);
+    Gallery.lampStage.distance = 10.0;
+    Gallery.scene.add(Gallery.lampStage);
 
     Gallery.textureLoader.load('./asset/floor-pattern.jpg', function (texture) {
         texture.wrapS = THREE.RepeatWrapping;
@@ -285,6 +290,10 @@ var Gallery = {
         Gallery.ladderLeft2 = new THREE.Mesh(new THREE.BoxGeometry(1, 0.5, 3), Gallery.stageMaterial);
         Gallery.ladderRight1 = new THREE.Mesh(new THREE.BoxGeometry(1, 1.25, 3), Gallery.stageMaterial);
         Gallery.ladderRight2 = new THREE.Mesh(new THREE.BoxGeometry(1, 0.5, 3), Gallery.stageMaterial);
+
+        Gallery.lampStage.target = Gallery.stage;
+        Gallery.lampStage.target.updateMatrixWorld();
+        Gallery.scene.add(Gallery.lampStage);
 
         Gallery.collider.push(Gallery.stage);
         Gallery.collider.push(Gallery.ladderLeft1);
@@ -401,8 +410,14 @@ var Gallery = {
       angklung.position.set(5, 0, -5);
 
       Gallery.scene.add(angklung);
+<<<<<<< HEAD
+      Gallery.collider.push(angklung);
+    }, function (err) { console.log('errorrrr'); }
+    );
+=======
       Gallery.collider(angklung);
     });
+>>>>>>> 2c5bc3d1e46bdb4422358e63ab01cc706537d6c4
 
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
@@ -411,8 +426,14 @@ var Gallery = {
       angklung.position.set(5, 0, -4);
 
       Gallery.scene.add(angklung);
+<<<<<<< HEAD
+      Gallery.collider.push(angklung);
+    }, function (err) { console.log('errorrrr'); }
+    );
+=======
       Gallery.collider(angklung);
     });
+>>>>>>> 2c5bc3d1e46bdb4422358e63ab01cc706537d6c4
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
@@ -420,8 +441,14 @@ var Gallery = {
       angklung.position.set(5, 0, -3);
 
       Gallery.scene.add(angklung);
+<<<<<<< HEAD
+      Gallery.collider.push(angklung);
+    }, function (err) { console.log('errorrrr'); }
+    );
+=======
       Gallery.collider(angklung);
     });
+>>>>>>> 2c5bc3d1e46bdb4422358e63ab01cc706537d6c4
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
@@ -429,6 +456,11 @@ var Gallery = {
       angklung.position.set(5, 0, -2);
 
       Gallery.scene.add(angklung);
+<<<<<<< HEAD
+      Gallery.collider.push(angklung);
+    }, function (err) { console.log('errorrrr'); }
+    );
+=======
       Gallery.collider(angklung);
     });
 
@@ -452,6 +484,7 @@ var Gallery = {
     //   Gallery.collider(gong);
     // }
     //);
+>>>>>>> 2c5bc3d1e46bdb4422358e63ab01cc706537d6c4
   
 	  Gallery.textureLoader.load('./asset/ceil.jpg',
       function (texture) {
