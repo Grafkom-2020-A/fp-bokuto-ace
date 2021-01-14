@@ -373,52 +373,15 @@ var Gallery = {
       materials.preload();
       Gallery.objLoader.setMaterials(materials);
       Gallery.objLoader.load('./asset/Speaker.obj', (root) => {
-      root.position.set(-8, 1.5, -17); 
+      // root.rotation.x = math.PI/2;
+      root.position.set(-8, 2, -17); 
       Gallery.scene.add(root);
       Gallery.collider.push(root);
 
       console.log('halo');
       });
     });
-
-    Gallery.mtlLoader.load("./asset/Speaker.mtl", function(materials){
-      
-      materials.preload();
-      Gallery.objLoader.setMaterials(materials);
-      Gallery.objLoader.load('./asset/Speaker.obj', (root) => {
-      root.position.set(-12, 1.5, -17); 
-      Gallery.scene.add(root);
-      Gallery.collider.push(root);
-
-      console.log('halo');
-      });
-    });
-
-    for (var  i = 0; i < 2; i++) {
-      Gallery.colladaLoader.load("./asset/Arena+1301-050PP/model.dae", function(object){
-        var kursi = object.scene;
-        kursi.scale.x = kursi.scale.y = kursi.scale.z = 0.07;
-        kursi.rotation.z = Math.PI / 2;
-
-       // var p = kursi.position.array;
-
-        kursi.position.set(-16 + (i + 2) , 0, -2);
-        // let x, y, z;
-        // x = -16;
-        // y = 0; 
-        // z = -2;
-
-        //   p[i] = x + (2 + i);
-        //   p[i] = y;
-        //   p[i] = z;
-
-        Gallery.scene.add(kursi );
-      //  kursi.position.array.needsUpdate = true;
-        console.log('halooook');
-      }, 
-      );
-     }
-     Gallery.colladaLoader.load("./asset/Arena+1301-050PP/model.dae", function(object){
+    Gallery.colladaLoader.load("./asset/Arena+1301-050PP/model.dae", function(object){
       var kursi = object.scene;
       kursi.scale.x = kursi.scale.y = kursi.scale.z = 0.07;
       kursi.rotation.z = Math.PI / 2;
