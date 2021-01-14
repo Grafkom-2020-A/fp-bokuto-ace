@@ -381,6 +381,24 @@ var Gallery = {
       });
     });
 
+    Gallery.mtlLoader.load("./asset/door/DOOR.mtl", function(materials){
+    
+      materials.preload();
+      Gallery.objLoader.setMaterials(materials);
+      Gallery.objLoader.load('./asset/door/DOOR.obj', (root) => {
+      root.position.set(-19.8, 2, 0); 
+      // materials.rotation.y = Math.PI / 2;
+      root.rotation.z = Math.PI/2;
+      root.rotation.x = Math.PI/2;
+      root.scale.x = root.scale.y = root.scale.z = 0.04;
+
+      Gallery.scene.add(root);
+      Gallery.collider.push(root);
+
+      console.log('halo');
+      });
+    });
+
     Gallery.mtlLoader.load("./asset/Speaker.mtl", function(materials){
       
       materials.preload();
