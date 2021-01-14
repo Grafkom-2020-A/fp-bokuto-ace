@@ -391,7 +391,7 @@ var Gallery = {
       function (err) { console.error(err); }
     );
 
-    
+
       Gallery.mtlLoader.load("./asset/Speaker.mtl", function(materials){
       
       materials.preload();
@@ -404,7 +404,6 @@ var Gallery = {
       console.log('halo');
       });
     });
-
     Gallery.mtlLoader.load("./asset/door/DOOR.mtl", function(materials){
     
       materials.preload();
@@ -422,7 +421,6 @@ var Gallery = {
       console.log('halo');
       });
     });
-
     Gallery.mtlLoader.load("./asset/Speaker.mtl", function(materials){
       
       materials.preload();
