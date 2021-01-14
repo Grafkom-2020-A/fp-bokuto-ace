@@ -373,7 +373,6 @@ var Gallery = {
       materials.preload();
       Gallery.objLoader.setMaterials(materials);
       Gallery.objLoader.load('./asset/Speaker.obj', (root) => {
-      // root.rotation.x = math.PI/2;
       root.position.set(-8, 2, -17); 
       Gallery.scene.add(root);
       Gallery.collider.push(root);
@@ -381,6 +380,20 @@ var Gallery = {
       console.log('halo');
       });
     });
+
+    Gallery.mtlLoader.load("./asset/Speaker.mtl", function(materials){
+      
+      materials.preload();
+      Gallery.objLoader.setMaterials(materials);
+      Gallery.objLoader.load('./asset/Speaker.obj', (root) => {
+      root.position.set(-12, 2, -17); 
+      Gallery.scene.add(root);
+      Gallery.collider.push(root);
+
+      console.log('halo');
+      });
+    });
+
     Gallery.colladaLoader.load("./asset/Arena+1301-050PP/model.dae", function(object){
       var kursi = object.scene;
       kursi.scale.x = kursi.scale.y = kursi.scale.z = 0.07;
