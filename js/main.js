@@ -261,9 +261,9 @@ var Gallery = {
     Gallery.worldLight = new THREE.AmbientLight(0xd3d3d3, 0.3);
     Gallery.scene.add(Gallery.worldLight);
 
-    Gallery.lampStage = new THREE.SpotLight( 0xffffff, 0.5 );
+    Gallery.lampStage = new THREE.SpotLight( 0xffffff, 0.5);
     Gallery.lampStage.position.set(0, 15, 0);
-    Gallery.lampStage.distance = 10.0;
+
     Gallery.scene.add(Gallery.lampStage);
 
     Gallery.textureLoader.load('./asset/floor-pattern.jpg', function (texture) {
@@ -410,14 +410,9 @@ var Gallery = {
       angklung.position.set(5, 0, -5);
 
       Gallery.scene.add(angklung);
-<<<<<<< HEAD
       Gallery.collider.push(angklung);
     }, function (err) { console.log('errorrrr'); }
     );
-=======
-      Gallery.collider(angklung);
-    });
->>>>>>> 2c5bc3d1e46bdb4422358e63ab01cc706537d6c4
 
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
@@ -426,14 +421,9 @@ var Gallery = {
       angklung.position.set(5, 0, -4);
 
       Gallery.scene.add(angklung);
-<<<<<<< HEAD
       Gallery.collider.push(angklung);
     }, function (err) { console.log('errorrrr'); }
     );
-=======
-      Gallery.collider(angklung);
-    });
->>>>>>> 2c5bc3d1e46bdb4422358e63ab01cc706537d6c4
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
@@ -441,14 +431,9 @@ var Gallery = {
       angklung.position.set(5, 0, -3);
 
       Gallery.scene.add(angklung);
-<<<<<<< HEAD
       Gallery.collider.push(angklung);
     }, function (err) { console.log('errorrrr'); }
     );
-=======
-      Gallery.collider(angklung);
-    });
->>>>>>> 2c5bc3d1e46bdb4422358e63ab01cc706537d6c4
 
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
@@ -456,35 +441,9 @@ var Gallery = {
       angklung.position.set(5, 0, -2);
 
       Gallery.scene.add(angklung);
-<<<<<<< HEAD
       Gallery.collider.push(angklung);
     }, function (err) { console.log('errorrrr'); }
     );
-=======
-      Gallery.collider(angklung);
-    });
-
-    Gallery.colladaLoader.load('./asset/Gong+mallets/model.dae', function(object){
-      var mallets = object.scene;
-      mallets.scale.x = mallets.scale.y = mallets.scale.z = 0.001;
-      mallets.rotation.z = Math.PI / 2;
-      mallets.position.set(5, 0, -1);
-
-      Gallery.scene.add(mallets);
-      Gallery.collider(mallets);
-    });
-
-    // Gallery.colladaLoader.load('./asset/Saron/model.dae', function(object){
-    //   var gong = object.scene;
-    //   gong.scale.x = gong.scale.y = gong.scale.z = 0.007;
-    //   gong.rotation.z = Math.PI / 2;
-    //   gong.position.set(6, 0, 0);
-
-    //   Gallery.scene.add(gong);
-    //   Gallery.collider(gong);
-    // }
-    //);
->>>>>>> 2c5bc3d1e46bdb4422358e63ab01cc706537d6c4
   
 	  Gallery.textureLoader.load('./asset/ceil.jpg',
       function (texture) {
