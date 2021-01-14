@@ -406,7 +406,51 @@ var Gallery = {
       }, 
       );
      }
-
+     Gallery.colladaLoader.load("./asset/Arena+1301-050PP/model.dae", function(object){
+      var kursi = object.scene;
+      kursi.scale.x = kursi.scale.y = kursi.scale.z = 0.07;
+      kursi.rotation.z = Math.PI / 2;
+      kursi.position.set(-10,0,0);
+      Gallery.scene.add(kursi );
+      console.log('halooook');
+    }, 
+    );
+    Gallery.colladaLoader.load("./asset/Arena+1301-050PP/model.dae", function(object){
+      var kursi = object.scene;
+      kursi.scale.x = kursi.scale.y = kursi.scale.z = 0.07;
+      kursi.rotation.z = Math.PI / 2;
+      kursi.position.set(-10,0,4);
+      Gallery.scene.add(kursi );
+      console.log('halooook');
+    }, 
+    );
+    Gallery.colladaLoader.load("./asset/Arena+1301-050PP/model.dae", function(object){
+      var kursi = object.scene;
+      kursi.scale.x = kursi.scale.y = kursi.scale.z = 0.07;
+      kursi.rotation.z = Math.PI / 2;
+      kursi.position.set(-10,0,2);
+      Gallery.scene.add(kursi );
+      console.log('halooook');
+    }, 
+    );
+    Gallery.colladaLoader.load("./asset/Arena+1301-050PP/model.dae", function(object){
+      var kursi = object.scene;
+      kursi.scale.x = kursi.scale.y = kursi.scale.z = 0.07;
+      kursi.rotation.z = Math.PI / 2;
+      kursi.position.set(-10,0,-4);
+      Gallery.scene.add(kursi );
+      console.log('halooook');
+    }, 
+    );
+    Gallery.colladaLoader.load("./asset/Arena+1301-050PP/model.dae", function(object){
+      var kursi = object.scene;
+      kursi.scale.x = kursi.scale.y = kursi.scale.z = 0.07;
+      kursi.rotation.z = Math.PI / 2;
+      kursi.position.set(-10,0,-2);
+      Gallery.scene.add(kursi );
+      console.log('halooook');
+    }, 
+    );
     Gallery.colladaLoader.load('./asset/Angklungs/model.dae', function(object){
       var angklung = object.scene;
       angklung.scale.x = angklung.scale.y = angklung.scale.z = 0.0005;
